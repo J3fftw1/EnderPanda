@@ -25,7 +25,25 @@ public final class Items {
     public static final SlimefunItemStack PANDA_HELMET = new SlimefunItemStack(
         "PANDA_HELMET",
         Material.DIAMOND_HELMET,
-        "Panda helmet"
+        "Panda Helmet"
+    );
+
+    public static final SlimefunItemStack PANDA_CHESTPLATE = new SlimefunItemStack(
+        "PANDA_CHESTPLATE",
+        Material.DIAMOND_CHESTPLATE,
+        "Panda Chestplate"
+    );
+
+    public static final SlimefunItemStack PANDA_LEGGINGS = new SlimefunItemStack(
+        "PANDA_LEGGINGS",
+        Material.DIAMOND_LEGGINGS,
+        "Panda Leggings"
+    );
+
+    public static final SlimefunItemStack PANDA_BOOTS = new SlimefunItemStack(
+        "PANDA_BOOTS",
+        Material.DIAMOND_BOOTS,
+        "Panda Boots"
     );
 
     private Items() {}

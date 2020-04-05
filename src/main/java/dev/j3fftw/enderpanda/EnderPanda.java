@@ -1,7 +1,10 @@
 package dev.j3fftw.enderpanda;
 
+import dev.j3fftw.enderpanda.armor.PandaBoots;
+import dev.j3fftw.enderpanda.armor.PandaChestplate;
+import dev.j3fftw.enderpanda.armor.PandaHelmet;
+import dev.j3fftw.enderpanda.armor.PandaLeggings;
 import dev.j3fftw.enderpanda.items.PandaFragment;
-import dev.j3fftw.enderpanda.items.PandaHelmet;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,7 +24,12 @@ public class EnderPanda extends JavaPlugin implements SlimefunAddon {
 
         // Items
         new PandaFragment().register(this);
+
+        // Armor
         new PandaHelmet().register(this);
+        new PandaChestplate().register(this);
+        new PandaLeggings().register(this);
+        new PandaBoots().register(this);
 
     }
 
@@ -36,5 +44,5 @@ public class EnderPanda extends JavaPlugin implements SlimefunAddon {
 
     public String getBugTrackerURL() {
         return "https://github.com/j3fftw/EnderPanda";
-}
+    }
 }
