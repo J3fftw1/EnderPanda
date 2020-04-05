@@ -46,5 +46,11 @@ public final class Items {
         "Panda Boots"
     );
 
+    public static final SlimefunItemStack SHULKER_HELMET = new SlimefunItemStack(
+        "SHULKER_HELMET",
+        Material.IRON_HELMET,
+        "Shulker Helmet"
+    );
+
     private Items() {}
 }

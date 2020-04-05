@@ -4,6 +4,7 @@ import dev.j3fftw.enderpanda.armor.PandaBoots;
 import dev.j3fftw.enderpanda.armor.PandaChestplate;
 import dev.j3fftw.enderpanda.armor.PandaHelmet;
 import dev.j3fftw.enderpanda.armor.PandaLeggings;
+import dev.j3fftw.enderpanda.armor.ShulkerHelmet;
 import dev.j3fftw.enderpanda.items.PandaFragment;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -30,6 +31,7 @@ public class EnderPanda extends JavaPlugin implements SlimefunAddon {
         new PandaChestplate().register(this);
         new PandaLeggings().register(this);
         new PandaBoots().register(this);
+        new ShulkerHelmet().register(this);
 
     }
 
