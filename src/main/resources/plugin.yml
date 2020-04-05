@@ -1,0 +1,7 @@
+name: EnderPanda
+description: Adds a new depth to the end world with this Slimefun Addon
+version: 1.0
+api-version: 1.14
+author: j3fftw
+depend: [Slimefun]
+main: dev.j3fftw.enderpanda.EnderPanda
