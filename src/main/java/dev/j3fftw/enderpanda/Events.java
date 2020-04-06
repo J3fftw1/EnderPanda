@@ -6,6 +6,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 
@@ -26,6 +27,12 @@ public class Events implements Listener {
         ) {
             e.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public void onShulkerAttack(final EntityDamageByEntityEvent e) {
+        if (e.getEntityType() == EntityType.SHULKER
+            && e.get)
     }
 
 }

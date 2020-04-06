@@ -7,6 +7,7 @@ import dev.j3fftw.enderpanda.armor.PandaLeggings;
 import dev.j3fftw.enderpanda.armor.ShulkerHelmet;
 import dev.j3fftw.enderpanda.items.PandaFragment;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class EnderPanda extends JavaPlugin implements SlimefunAddon {
@@ -19,6 +20,8 @@ public class EnderPanda extends JavaPlugin implements SlimefunAddon {
 
     public void onEnable() {
         instance = this;
+
+        getServer().getPluginManager().registerEvents(new Events(), this);
 
         // Category
         Items.ENDER_PANDA_CATEGORY.register();

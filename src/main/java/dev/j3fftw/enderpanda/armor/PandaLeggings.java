@@ -9,7 +9,7 @@ import org.bukkit.potion.PotionEffect;
 public class PandaLeggings extends SlimefunArmorPiece {
 
     public PandaLeggings() {
-        super(Items.ENDER_PANDA_CATEGORY, Items.PANDA_HELMET, RecipeType.ANCIENT_ALTAR, new ItemStack[] {
+        super(Items.ENDER_PANDA_CATEGORY, Items.PANDA_LEGGINGS, RecipeType.ANCIENT_ALTAR, new ItemStack[] {
                 Items.PANDA_FRAGMENT, Items.PANDA_FRAGMENT, Items.PANDA_FRAGMENT,
                 Items.PANDA_FRAGMENT, null, Items.PANDA_FRAGMENT,
                 Items.PANDA_FRAGMENT, null, Items.PANDA_FRAGMENT

@@ -9,7 +9,7 @@ package dev.j3fftw.enderpanda.armor;
 public class PandaChestplate extends SlimefunArmorPiece {
 
     public PandaChestplate() {
-        super(Items.ENDER_PANDA_CATEGORY, Items.PANDA_HELMET, RecipeType.ANCIENT_ALTAR, new ItemStack[] {
+        super(Items.ENDER_PANDA_CATEGORY, Items.PANDA_CHESTPLATE, RecipeType.ANCIENT_ALTAR, new ItemStack[] {
                 Items.PANDA_FRAGMENT, null, Items.PANDA_FRAGMENT,
                 Items.PANDA_FRAGMENT, Items.PANDA_FRAGMENT, Items.PANDA_FRAGMENT,
                 Items.PANDA_FRAGMENT, Items.PANDA_FRAGMENT, Items.PANDA_FRAGMENT
