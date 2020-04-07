@@ -52,5 +52,11 @@ public final class Items {
         "Shulker Helmet"
     );
 
+    public static final SlimefunItemStack ENDER_REPLACER = new SlimefunItemStack(
+        "ENDER_REPLACER",
+        Material.BEACON,
+        "Ender Replacer"
+    );
+
     private Items() {}
 }

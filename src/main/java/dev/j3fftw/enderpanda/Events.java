@@ -8,17 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 
 public class Events implements Listener {
-
-    @EventHandler
-    public void onPandaDeath(final EntityDeathEvent e) {
-        if (e.getEntityType() == EntityType.PANDA && Utils.isEnd(e.getEntity().getWorld())) {
-            e.getDrops().add(Items.PANDA_FRAGMENT);
-        }
-    }
 
     @EventHandler
     public void onEndermanLook(final EntityTargetEvent e) {
