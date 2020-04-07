@@ -4,14 +4,18 @@ import dev.j3fftw.enderpanda.Items;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Lists.SlimefunItems;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
+import me.mrCookieSlime.Slimefun.Objects.handlers.ItemHandler;
 import me.mrCookieSlime.Slimefun.SlimefunPlugin;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.energy.ChargableBlock;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
@@ -33,10 +37,11 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
     private static final int ENERGY_CONSUMPTION = 60;
     private static final int ENERGY_CAPACITY = 1024;
 
+
     public EnderReplacer() {
         super(
             Items.ENDER_PANDA_CATEGORY,
-            new SlimefunItemStack("ENDDER_REPLACER", Material.BEACON, "&5Ender Replacer",
+            new SlimefunItemStack("ENDER_REPLACER", Material.STONE, "&5Ender Replacer",
                 "Somekind of lore", "Somekind of lore"),
             RecipeType.ANCIENT_ALTAR,
             new ItemStack[] {
@@ -48,7 +53,7 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
 
         setupInterface();
 
-        addItemHandler(onTick());
+        addItemHandler((ItemHandler) onTick());
     }
 
     private void setupInterface() {
@@ -75,14 +80,25 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
             }
 
             @Override
-            public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
+            public int[] getSlotsAccessedByItemTransport(ItemTransportFlow itemTransportFlow) {
                 return new int[14];
             }
 
         };
     }
 
-    private BlockTicker onTick() {
+
+    @Override
+    public EnergyNetComponentType getEnergyComponentType() {
+        return EnergyNetComponentType.CONSUMER;
+    }
+
+    @Override
+    public int getCapacity() {
+        return 1024;
+    }
+
+    private Object onTick() {
         return new BlockTicker() {
 
             @Override
@@ -92,6 +108,7 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
 
             @Override
             public void tick(@Nonnull Block b, @Nonnull SlimefunItem item, @Nonnull Config config) {
+                BlockMenu inv = BlockStorage.getInventory(b);
                 if (!Bukkit.getAllowEnd()
                     || !b.getWorld().getUID().equals(Bukkit.getWorlds().get(!Bukkit.getAllowNether() ? 1 : 2).getUID())
                     || getCapacity() > ENERGY_CAPACITY
@@ -102,25 +119,25 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
                         ent -> ent.getType() == EntityType.ENDERMAN);
                 if (entities.isEmpty()) return;
                 for (Entity e : entities) {
-                    e.remove();
-                    b.getWorld().spawnEntity(e.getLocation(), EntityType.PANDA);
-                    //todo add particle effect
-                    if (ChargableBlock.getCharge(b) < ENERGY_CONSUMPTION) return;
+                    for (int slot : getInputSlots()) {
+                        e.remove();
+                        b.getWorld().spawnEntity(e.getLocation(), EntityType.PANDA);
+                        b.getWorld().spawnParticle(Particle.DRAGON_BREATH, e.getLocation(), 1);
+                        if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(slot), Items.SPECIAL_BAMBOO, false)) {
+                            if (ChargableBlock.getCharge(b) < ENERGY_CONSUMPTION) return;
 
-                    ChargableBlock.addCharge(b, -ENERGY_CONSUMPTION);
+                            ChargableBlock.addCharge(b, -ENERGY_CONSUMPTION);
+                            inv.consumeItem(slot);
+
+                        }
+                    }
                 }
             }
+
+            private int[] getInputSlots() {
+                return new int[] {14};
+            }
         };
-    }
-
-    @Override
-    public EnergyNetComponentType getEnergyComponentType() {
-        return EnergyNetComponentType.CONSUMER;
-    }
-
-    @Override
-    public int getCapacity() {
-        return 1024;
     }
 }
 

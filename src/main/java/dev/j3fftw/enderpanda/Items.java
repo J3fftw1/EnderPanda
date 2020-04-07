@@ -58,5 +58,11 @@ public final class Items {
         "Ender Replacer"
     );
 
+    public static final SlimefunItemStack SPECIAL_BAMBOO = new SlimefunItemStack(
+        "SPECIAL_BAMBOO",
+        Material.BAMBOO,
+        "Special Bamboo"
+    );
+
     private Items() {}
 }

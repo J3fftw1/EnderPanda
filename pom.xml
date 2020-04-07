@@ -82,7 +82,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <outputFile>D:\Workspace\Test-Servers\1.14biggat-test\plugins.EnderPanda.jar</outputFile>
+                            <outputFile>D:\Workspace\Test-Servers\1.14biggat-test\plugins\EnderPanda.jar</outputFile>
                         </configuration>
                     </execution>
                 </executions>
