@@ -17,7 +17,7 @@ public class SpecialBamboo extends SimpleSlimefunItem<ItemUseHandler> {
         super(Items.ENDER_PANDA_CATEGORY, Items.SPECIAL_BAMBOO, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
             bamboo, bamboo, bamboo,
             bamboo, epearl, bamboo,
-            bamboo, bamboo,
+            bamboo, bamboo, bamboo
         });
     }
 

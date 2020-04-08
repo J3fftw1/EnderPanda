@@ -10,7 +10,6 @@ import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Lists.SlimefunItems;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import me.mrCookieSlime.Slimefun.Objects.handlers.ItemHandler;
 import me.mrCookieSlime.Slimefun.SlimefunPlugin;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -53,7 +52,7 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
 
         setupInterface();
 
-        addItemHandler((ItemHandler) onTick());
+        addItemHandler(onTick());
     }
 
     private void setupInterface() {
@@ -68,7 +67,8 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
                 this.addItem(12, new CustomItem(Material.GUNPOWDER, "&5Power"), ChestMenuUtils.getEmptyClickHandler());
                 this.addItem(14, null, (player, i, itemStack, clickAction) -> {
                     ItemStack is = player.getItemOnCursor();
-                    return is.getType() == Material.BAMBOO || itemStack.getType() != Material.AIR;
+                    return SlimefunUtils.isItemSimilar(is, Items.SPECIAL_BAMBOO, false)
+                        || itemStack != null;
                 });
             }
 
@@ -98,7 +98,7 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
         return 1024;
     }
 
-    private Object onTick() {
+    private BlockTicker onTick() {
         return new BlockTicker() {
 
             @Override
@@ -112,31 +112,26 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
                 if (!Bukkit.getAllowEnd()
                     || !b.getWorld().getUID().equals(Bukkit.getWorlds().get(!Bukkit.getAllowNether() ? 1 : 2).getUID())
                     || getCapacity() > ENERGY_CAPACITY
+                    || inv.getItemInSlot(14) == null
+                    || !SlimefunUtils.isItemSimilar(inv.getItemInSlot(14), Items.SPECIAL_BAMBOO, false)
                 )
                     return;
                 Collection<Entity> entities =
                     b.getWorld().getNearbyEntities(b.getLocation(), 7, 3, 7,
                         ent -> ent.getType() == EntityType.ENDERMAN);
                 if (entities.isEmpty()) return;
+
                 for (Entity e : entities) {
-                    for (int slot : getInputSlots()) {
-                        e.remove();
-                        b.getWorld().spawnEntity(e.getLocation(), EntityType.PANDA);
-                        b.getWorld().spawnParticle(Particle.DRAGON_BREATH, e.getLocation(), 1);
-                        if (SlimefunUtils.isItemSimilar(inv.getItemInSlot(slot), Items.SPECIAL_BAMBOO, false)) {
-                            if (ChargableBlock.getCharge(b) < ENERGY_CONSUMPTION) return;
+                    if (ChargableBlock.getCharge(b) < ENERGY_CONSUMPTION) return;
+                    e.remove();
+                    b.getWorld().spawnEntity(e.getLocation(), EntityType.PANDA);
+                    b.getWorld().spawnParticle(Particle.DRAGON_BREATH, e.getLocation(), 1);
+                    ChargableBlock.addCharge(b, -ENERGY_CONSUMPTION);
+                    inv.consumeItem(14);
 
-                            ChargableBlock.addCharge(b, -ENERGY_CONSUMPTION);
-                            inv.consumeItem(slot);
-
-                        }
-                    }
                 }
             }
 
-            private int[] getInputSlots() {
-                return new int[] {14};
-            }
         };
     }
 }

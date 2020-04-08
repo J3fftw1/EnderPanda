@@ -54,7 +54,7 @@ public final class Items {
 
     public static final SlimefunItemStack ENDER_REPLACER = new SlimefunItemStack(
         "ENDER_REPLACER",
-        Material.BEACON,
+        Material.STONE,
         "Ender Replacer"
     );
 
@@ -62,6 +62,12 @@ public final class Items {
         "SPECIAL_BAMBOO",
         Material.BAMBOO,
         "Special Bamboo"
+    );
+
+    public static final SlimefunItemStack ENDER_GENERATOR = new SlimefunItemStack(
+        "ENDER_GENERATPR",
+        Material.HAY_BLOCK,
+        "Ender Generator"
     );
 
     private Items() {}
