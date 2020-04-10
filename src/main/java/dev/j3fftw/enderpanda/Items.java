@@ -20,56 +20,73 @@ public final class Items {
         "PANDA_FRAGMENT",
         Material.PRISMARINE_SHARD,
         "&5Panda Fragment",
-        "&7A sad fragment from", "killing an EnderPanda",
-        "Can be used in many ways"
+        "",
+        "&7A sad fragment from",
+        "&7killing a Panda in the end",
+        "&7Can be used in many ways"
     );
 
     public static final SlimefunItemStack PANDA_HELMET = new SlimefunItemStack(
         "PANDA_HELMET",
         Material.DIAMOND_HELMET,
-        "Panda Helmet"
+        "&5Panda Helmet",
+        "&7Ability to look",
+        "&7at Endermen"
     );
 
     public static final SlimefunItemStack PANDA_CHESTPLATE = new SlimefunItemStack(
         "PANDA_CHESTPLATE",
         Material.DIAMOND_CHESTPLATE,
-        "Panda Chestplate"
+        "&5Panda Chestplate"
     );
 
     public static final SlimefunItemStack PANDA_LEGGINGS = new SlimefunItemStack(
         "PANDA_LEGGINGS",
         Material.DIAMOND_LEGGINGS,
-        "Panda Leggings"
+        "&5Panda Leggings"
     );
 
     public static final SlimefunItemStack PANDA_BOOTS = new SlimefunItemStack(
         "PANDA_BOOTS",
         Material.DIAMOND_BOOTS,
-        "Panda Boots"
+        "&5Panda Boots"
     );
 
     public static final SlimefunItemStack SHULKER_HELMET = new SlimefunItemStack(
         "SHULKER_HELMET",
         Material.IRON_HELMET,
-        "Shulker Helmet"
+        "&5Shulker Helmet",
+        "&7Immune for",
+        "&7Shulker bullets"
     );
-    // todo change material
+
     public static final SlimefunItemStack ENDER_REPLACER = new SlimefunItemStack(
         "ENDER_REPLACER",
-        Material.STONE,
-        "Ender Replacer"
+        new CustomItem(SkullItem.fromHash("e5e8cc99bb42dda2aafbff457756776b28c8e34ee245cc553d2694e6b04b72"),
+            "Ender Replacer"),
+        "&5Ender Replacer",
+        "",
+        "&7Replaces Endermen",
+        "&7To Pandas"
     );
 
     public static final SlimefunItemStack SPECIAL_BAMBOO = new SlimefunItemStack(
         "SPECIAL_BAMBOO",
         Material.BAMBOO,
-        "Special Bamboo"
+        "&5Special Bamboo",
+        "",
+        "&7Needed to",
+        "&7Replace Endermen"
     );
-    // todo change into an actual head as gen
+
     public static final SlimefunItemStack ENDER_GENERATOR = new SlimefunItemStack(
-        "ENDER_GENERATPR",
-        Material.HAY_BLOCK,
-        "Ender Generator"
+        "ENDER_GENERATOR",
+        new CustomItem(SkullItem.fromHash("38be8abd66d09a58ce12d377544d726d25cad7e979e8c2481866be94d3b32f"),
+            "Ender Gen"),
+        "&5Ender Generator",
+        "",
+        "&7Generates power",
+        "&7from enderpearls"
     );
 
     private Items() {}

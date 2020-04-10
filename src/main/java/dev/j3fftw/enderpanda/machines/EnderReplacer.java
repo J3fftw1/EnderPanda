@@ -12,15 +12,12 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.SlimefunPlugin;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.energy.ChargableBlock;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -36,14 +33,8 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
     private static final int ENERGY_CONSUMPTION = 60;
     private static final int ENERGY_CAPACITY = 1024;
 
-
     public EnderReplacer() {
-        super(
-            Items.ENDER_PANDA_CATEGORY,
-            new SlimefunItemStack("ENDER_REPLACER", Material.STONE, "&5Ender Replacer",
-                "Somekind of lore", "Somekind of lore"),
-            RecipeType.ANCIENT_ALTAR,
-            new ItemStack[] {
+        super(Items.ENDER_PANDA_CATEGORY, Items.ENDER_REPLACER, RecipeType.ANCIENT_ALTAR, new ItemStack[] {
                 SlimefunItems.RUNE_ENDER, SlimefunItems.STEEL_PLATE, SlimefunItems.RUNE_ENDER,
                 SlimefunItems.STEEL_PLATE, SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.STEEL_PLATE,
                 SlimefunItems.RUNE_ENDER, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE
@@ -63,11 +54,7 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
                 for (int i = 0; i < 27; i++) {
                     this.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
                 }
-                //todo display current energy in machine
-                this.addItem(12, new CustomItem(Material.GUNPOWDER, "&5Power " + getCapacity()),
-                    ChestMenuUtils.getEmptyClickHandler());
-
-                this.addItem(14, null, (player, i, itemStack, clickAction) -> {
+                this.addItem(13, null, (player, i, itemStack, clickAction) -> {
                     ItemStack is = player.getItemOnCursor();
                     return SlimefunUtils.isItemSimilar(is, Items.SPECIAL_BAMBOO, false)
                         || itemStack != null;
