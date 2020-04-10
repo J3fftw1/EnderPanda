@@ -63,8 +63,10 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
                 for (int i = 0; i < 27; i++) {
                     this.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
                 }
-                //todo add power
-                this.addItem(12, new CustomItem(Material.GUNPOWDER, "&5Power"), ChestMenuUtils.getEmptyClickHandler());
+                //todo display current energy in machine
+                this.addItem(12, new CustomItem(Material.GUNPOWDER, "&5Power " + getCapacity()),
+                    ChestMenuUtils.getEmptyClickHandler());
+
                 this.addItem(14, null, (player, i, itemStack, clickAction) -> {
                     ItemStack is = player.getItemOnCursor();
                     return SlimefunUtils.isItemSimilar(is, Items.SPECIAL_BAMBOO, false)

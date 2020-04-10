@@ -7,7 +7,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 public class PandaHelmet extends SlimefunArmorPiece {
-
     public PandaHelmet() {
         super(Items.ENDER_PANDA_CATEGORY, Items.PANDA_HELMET, RecipeType.ANCIENT_ALTAR, new ItemStack[] {
                 Items.PANDA_FRAGMENT, Items.PANDA_FRAGMENT, Items.PANDA_FRAGMENT,

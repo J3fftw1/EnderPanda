@@ -6,16 +6,18 @@ import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SimpleSlimefunItem;
 import me.mrCookieSlime.Slimefun.Objects.handlers.ItemUseHandler;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
-import org.bukkit.Material;
+import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import org.bukkit.inventory.ItemStack;
 
 public class PandaFragment extends SimpleSlimefunItem<ItemUseHandler> {
 
-    //todo make it show panda head
+    private static final ItemStack panda = new CustomItem(SkullItem.fromHash(
+        "d188c980aacfa94cf33088512b1b9517ba826b154d4cafc262aff6977be8a"), "&8Panda");
+
     public PandaFragment() {
         super(Items.ENDER_PANDA_CATEGORY, Items.PANDA_FRAGMENT, RecipeType.MOB_DROP, new ItemStack[] {
             null, null, null,
-            null, new CustomItem(Material.PLAYER_HEAD, "&8Panda"), null,
+            null, panda, null,
             null, null, null
         });
     }

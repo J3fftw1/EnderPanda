@@ -3,15 +3,17 @@ package dev.j3fftw.enderpanda;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
+import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 
 public final class Items {
-
+    // todo add proper lore to every item
     // Category
     public static final Category ENDER_PANDA_CATEGORY = new Category(
         new NamespacedKey(EnderPanda.getInstance(), "enderpanda"),
-        new CustomItem(Material.PLAYER_HEAD, "&8*lEnderPanda")
+        new CustomItem(SkullItem.fromHash(
+            "d188c980aacfa94cf33088512b1b9517ba826b154d4cafc262aff6977be8a"), "&8Panda")
     );
 
     public static final SlimefunItemStack PANDA_FRAGMENT = new SlimefunItemStack(
@@ -51,7 +53,7 @@ public final class Items {
         Material.IRON_HELMET,
         "Shulker Helmet"
     );
-
+    // todo change material
     public static final SlimefunItemStack ENDER_REPLACER = new SlimefunItemStack(
         "ENDER_REPLACER",
         Material.STONE,
@@ -63,7 +65,7 @@ public final class Items {
         Material.BAMBOO,
         "Special Bamboo"
     );
-
+    // todo change into an actual head as gen
     public static final SlimefunItemStack ENDER_GENERATOR = new SlimefunItemStack(
         "ENDER_GENERATPR",
         Material.HAY_BLOCK,
