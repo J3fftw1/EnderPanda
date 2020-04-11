@@ -16,8 +16,10 @@ import me.mrCookieSlime.Slimefun.api.energy.ChargableBlock;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -54,7 +56,10 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
                 for (int i = 0; i < 27; i++) {
                     this.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
                 }
-                this.addItem(13, null, (player, i, itemStack, clickAction) -> {
+
+                this.addItem(12, new CustomItem(Material.BAMBOO, "&c&lRequired"));
+
+                this.addItem(14, null, (player, i, itemStack, clickAction) -> {
                     ItemStack is = player.getItemOnCursor();
                     return SlimefunUtils.isItemSimilar(is, Items.SPECIAL_BAMBOO, false)
                         || itemStack != null;
@@ -70,12 +75,11 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
 
             @Override
             public int[] getSlotsAccessedByItemTransport(ItemTransportFlow itemTransportFlow) {
-                return new int[14];
+                return new int[13];
             }
 
         };
     }
-
 
     @Override
     public EnergyNetComponentType getEnergyComponentType() {
@@ -98,11 +102,12 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
             @Override
             public void tick(@Nonnull Block b, @Nonnull SlimefunItem item, @Nonnull Config config) {
                 BlockMenu inv = BlockStorage.getInventory(b);
+                ItemStack slot = inv.getItemInSlot(14);
                 if (!Bukkit.getAllowEnd()
                     || !b.getWorld().getUID().equals(Bukkit.getWorlds().get(!Bukkit.getAllowNether() ? 1 : 2).getUID())
                     || getCapacity() > ENERGY_CAPACITY
-                    || inv.getItemInSlot(14) == null
-                    || !SlimefunUtils.isItemSimilar(inv.getItemInSlot(14), Items.SPECIAL_BAMBOO, false)
+                    || slot == null
+                    || !SlimefunUtils.isItemSimilar(slot, Items.SPECIAL_BAMBOO, false)
                 )
                     return;
                 Collection<Entity> entities =
@@ -114,7 +119,9 @@ public class EnderReplacer extends SlimefunItem implements EnergyNetComponent {
                     if (ChargableBlock.getCharge(b) < ENERGY_CONSUMPTION) return;
                     e.remove();
                     b.getWorld().spawnEntity(e.getLocation(), EntityType.PANDA);
-                    b.getWorld().spawnParticle(Particle.DRAGON_BREATH, e.getLocation(), 1);
+                    b.getWorld().spawnParticle(Particle.DRAGON_BREATH, e.getLocation(), 200);
+                    b.getWorld().spawnParticle(Particle.ITEM_CRACK, b.getLocation().clone().add(0.5, 2, 0.5), 100,
+                        new ItemStack(Material.BAMBOO));
                     ChargableBlock.addCharge(b, -ENERGY_CONSUMPTION);
                     inv.consumeItem(14);
 

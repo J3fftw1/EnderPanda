@@ -8,7 +8,7 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class EnderGenerator extends AGenerator {
+public class EnderGenerator extends AGenerator  {
 
     public EnderGenerator() {
         super(Items.ENDER_PANDA_CATEGORY, Items.ENDER_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {

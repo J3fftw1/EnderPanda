@@ -57,6 +57,6 @@ public class EnderPanda extends JavaPlugin implements SlimefunAddon {
     }
 
     public String getBugTrackerURL() {
-        return "https://github.com/j3fftw/EnderPanda";
+        return "https://github.com/j3fftw/EnderPanda/issues";
     }
 }

@@ -8,7 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 
 public final class Items {
-    // todo add proper lore to every item
+
     // Category
     public static final Category ENDER_PANDA_CATEGORY = new Category(
         new NamespacedKey(EnderPanda.getInstance(), "enderpanda"),
@@ -21,17 +21,17 @@ public final class Items {
         Material.PRISMARINE_SHARD,
         "&5Panda Fragment",
         "",
-        "&7A sad fragment from",
-        "&7killing a Panda in the end",
-        "&7Can be used in many ways"
+        "&8A sad fragment from",
+        "&8killing a Panda in the end",
+        "&8Can be used in many ways"
     );
 
     public static final SlimefunItemStack PANDA_HELMET = new SlimefunItemStack(
         "PANDA_HELMET",
         Material.DIAMOND_HELMET,
         "&5Panda Helmet",
-        "&7Ability to look",
-        "&7at Endermen"
+        "",
+        "&8Ability to look at Endermen"
     );
 
     public static final SlimefunItemStack PANDA_CHESTPLATE = new SlimefunItemStack(
@@ -56,8 +56,8 @@ public final class Items {
         "SHULKER_HELMET",
         Material.IRON_HELMET,
         "&5Shulker Helmet",
-        "&7Immune for",
-        "&7Shulker bullets"
+        "",
+        "&8Immune for Shulker bullets"
     );
 
     public static final SlimefunItemStack ENDER_REPLACER = new SlimefunItemStack(
@@ -66,8 +66,8 @@ public final class Items {
             "Ender Replacer"),
         "&5Ender Replacer",
         "",
-        "&7Replaces Endermen",
-        "&7To Pandas"
+        "&8Replaces Endermen",
+        "&8To Pandas"
     );
 
     public static final SlimefunItemStack SPECIAL_BAMBOO = new SlimefunItemStack(
@@ -75,8 +75,8 @@ public final class Items {
         Material.BAMBOO,
         "&5Special Bamboo",
         "",
-        "&7Needed to",
-        "&7Replace Endermen"
+        "&8Needed to",
+        "&8Replace Endermen"
     );
 
     public static final SlimefunItemStack ENDER_GENERATOR = new SlimefunItemStack(
@@ -85,8 +85,8 @@ public final class Items {
             "Ender Gen"),
         "&5Ender Generator",
         "",
-        "&7Generates power",
-        "&7from enderpearls"
+        "&8Generates power",
+        "&8from enderpearls"
     );
 
     private Items() {}
